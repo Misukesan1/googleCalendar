@@ -1,10 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+import axios from 'axios';
+
 function App() {
+
+  async function getUsers() {
+    try {
+      const response = await axios.get('http://localhost:2424/server');
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    getUsers();
+  }, [])
 
   return (
     <>
